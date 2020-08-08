@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
+import { withRouter} from 'react-router-dom';
 
 const burger = (props) => {
     let transformedIngredients = Object.keys(props.ingredients)//take the keys of an object and create an array
@@ -26,3 +27,4 @@ const burger = (props) => {
 };
 
 export default burger;
+//the component surrounded with wirhRouter gains access to the httpprops, location, history, match

@@ -93,29 +93,18 @@ class BurgerBuilder extends Component {
     purchaseContinueHandler = () => {
         // if the method is trigger by an event this. does not work properly
         // alert('You continue');
-        this.setState({ loading: true });
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Max Schw',
-                address: {
-                    street: 'test 1',
-                    zipCode: '321231',
-                    country: 'Country test'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'fastest'
+        
+        const queryParams = [];
+        for(let i in this.state.ingredients){
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
         }
-        axios.post('/orders.json', order)
-            .then(response => {
-                console.log(response);
-                this.setState({ loading: false, purchasing: false });
-            })
-            .catch(error => {
-                this.setState({ loading: false, purchasing: false });
-            });
+        // i = saldad, this.state.ingredients[i]=0.5
+        queryParams.push('price=' + this.state.totalPrice);
+        const queryString= queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
+        });
     }
 
     render() {
