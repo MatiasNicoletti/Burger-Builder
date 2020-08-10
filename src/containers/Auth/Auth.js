@@ -4,6 +4,7 @@ import Input from '../../components/UI/Input/Input';
 import * as actions from '../../store/actions/indexAction';
 import { connect } from 'react-redux';
 
+
 class Auth extends Component {
     state = {
         controls: {
@@ -67,7 +68,7 @@ class Auth extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        this.props.onAuth(this.state.controls.email.value, this.state.controls.password);
+        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
     }
 
     render() {
