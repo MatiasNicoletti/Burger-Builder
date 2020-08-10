@@ -8,7 +8,7 @@ import axios from '../../axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/WithErrorHandler/withErrorHandler';
 import { connect } from 'react-redux';
-import * as burgerBuilderActions from '../../store/actions/indexAction';
+import * as actions from '../../store/actions/indexAction';
 
 
 
@@ -43,6 +43,7 @@ class BurgerBuilder extends Component {
     }
 
     purchaseCancelHandler = () => {
+        this.props.onInitPurchase();
         // if the method is trigger by an event this. does not work properly
         this.setState({ purchasing: false });
     }
@@ -119,9 +120,10 @@ const mapStateToProps = (state )=>{
 }
 const mapDispatchToProps = dispatch =>{
     return{
-        onIngredientAdded: (ingredientName) => dispatch(burgerBuilderActions.addIngredient(ingredientName)),
-        onIngredientRemoved: (ingredientName) => dispatch(burgerBuilderActions.removeIngredient(ingredientName)),
-        onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
+        onIngredientAdded: (ingredientName) => dispatch(actions.addIngredient(ingredientName)),
+        onIngredientRemoved: (ingredientName) => dispatch(actions.removeIngredient(ingredientName)),
+        onInitIngredients: () => dispatch(actions.initIngredients()),
+        onInitPurchase: () => dispatch(actions.purchaseInit())
     }
 };
 

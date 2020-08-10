@@ -6,9 +6,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/indexAction';
 
 class Checkout extends Component {
-    componentDidMount(){
-        this.props.onInitPurchase();
-    }
+    
     // componentWillMount(){
     //     const query = new URLSearchParams(this.props.location.search);
     //     const ingredients = {};
@@ -68,10 +66,5 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return{
-        onInitPurchase: () => dispatch(actions.purchaseInit())
-    };
-}
 
-export default connect(mapStateToProps,mapDispatchToProps)(Checkout);
+export default connect(mapStateToProps)(Checkout);
