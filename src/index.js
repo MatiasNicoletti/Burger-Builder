@@ -9,12 +9,14 @@ import { BrowserRouter } from 'react-router-dom';
 import burgerBuilderReducer from './store/reducers/burgerBuilderReducer';
 import thunk from 'redux-thunk';
 import orderReducer from './store/reducers/orderReducer';
+import authReducer from './store/reducers/authReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     burgerBuilderReducer,
-    orderReducer
+    orderReducer,
+    authReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(
