@@ -100,6 +100,7 @@ class Auth extends Component {
                     {form}
                     <Button btnType="Success">Submit</Button>
                 </form>
+                <Button btnType="Danger">Sign-in</Button>
             </div>
         );
     }
