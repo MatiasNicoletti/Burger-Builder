@@ -39,7 +39,12 @@ class BurgerBuilder extends Component {
 
     purchaseHandler = () => {
         // if the method is trigger by an event this. does not work properly
-        this.setState({ purchasing: true });
+        if (this.props.isAuthenticated) {
+            this.setState({ purchasing: true });
+        } else {
+            this.props.history.push('/auth');
+        }
+
     }
 
     purchaseCancelHandler = () => {
@@ -74,11 +79,11 @@ class BurgerBuilder extends Component {
         }
 
         let orderSummary = null;
-        
+
         let burger = this.props.error ? <p>Ingredients can't be loaded</p> : <Spinner />;
-        
+
         if (this.props.ingredients) {
-            
+
             burger = (
                 <Auxiliary>
                     <Burger ingredients={this.props.ingredients} />
@@ -100,7 +105,7 @@ class BurgerBuilder extends Component {
                 purchaseContinued={this.purchaseContinueHandler}
             />;
         }
-        
+
         return (
             <Auxiliary>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
@@ -111,17 +116,17 @@ class BurgerBuilder extends Component {
         );
     }
 }
-const mapStateToProps = (state )=>{
-    
-    return{
+const mapStateToProps = (state) => {
+
+    return {
         ingredients: state.burgerBuilderReducer.ingredients,
         totalPrice: state.burgerBuilderReducer.totalPrice,
         error: state.burgerBuilderReducer.error,
         isAuthenticated: state.authReducer.token
     };
 }
-const mapDispatchToProps = dispatch =>{
-    return{
+const mapDispatchToProps = dispatch => {
+    return {
         onIngredientAdded: (ingredientName) => dispatch(actions.addIngredient(ingredientName)),
         onIngredientRemoved: (ingredientName) => dispatch(actions.removeIngredient(ingredientName)),
         onInitIngredients: () => dispatch(actions.initIngredients()),
