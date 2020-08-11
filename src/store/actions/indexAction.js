@@ -10,5 +10,6 @@ export {
 } from './orderAction';
 export{
     auth,
-    logout
+    logout,
+    setAuthRedirectPath
 } from './auth';
